@@ -1,32 +1,40 @@
-# React + TypeScript + Vite
+# TarHeel CourseMatch
 
-This template provides a minimal setup to get React working in Vite with HMR and some Oxlint rules.
+UNC Kenan-Flagler 商学院大一选课互助与 Syllabus 指数平台原型。
 
-Currently, two official plugins are available:
+**BUSI 200 Carolina Changemaking Challenge** 小组项目 · 纯前端 SPA（React + TypeScript + Vite + Tailwind CSS）。
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react) uses [Oxc](https://oxc.rs)
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react-swc) uses [SWC](https://swc.rs/)
+## 本地开发
 
-## React Compiler
-
-The React Compiler is not enabled on this template because of its impact on dev & build performances. To add it, see [this documentation](https://react.dev/learn/react-compiler/installation).
-
-## Expanding the Oxlint configuration
-
-If you are developing a production application, we recommend enabling type-aware lint rules by installing `oxlint-tsgolint` and editing `.oxlintrc.json`:
-
-```json
-{
-  "$schema": "./node_modules/oxlint/configuration_schema.json",
-  "plugins": ["react", "typescript", "oxc"],
-  "options": {
-    "typeAware": true
-  },
-  "rules": {
-    "react/rules-of-hooks": "error",
-    "react/only-export-components": ["warn", { "allowConstantExport": true }]
-  }
-}
+```bash
+npm install
+npm run dev
 ```
 
-See the [Oxlint rules documentation](https://oxc.rs/docs/guide/usage/linter/rules) for the full list of rules and categories.
+## 构建与预览
+
+```bash
+npm run build
+npm run preview
+```
+
+## 部署到 GitHub Pages
+
+1. 将本仓库推送到 GitHub
+2. 在仓库 Settings → Pages 中选择 GitHub Actions 或 `gh-pages` 分支
+3. 或使用：
+
+```bash
+npm run build
+# 将 dist/ 目录内容发布到 GitHub Pages
+```
+
+本项目 `vite.config.ts` 已设置 `base: './'`，可适配任意子路径部署。
+
+## 功能概览
+
+- 6 门 Kenan-Flagler 大一核心 / 先修课程指数库
+- Syllabus 硬核拆解弹窗
+- 1v1 学长匹配卡（12 位模拟 UBP 学长学姐）
+- 防尴尬微聊室（破冰胶囊 + 拟真回复 + Mentor Karma）
+- localStorage 持久化匹配与私信状态
