@@ -8,4 +8,3 @@ export default defineConfig({
   // Relative assets work for GitHub project Pages and local `vite preview`
   base: './',
 })
-

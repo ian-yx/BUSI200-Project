@@ -37,11 +37,18 @@ export function ChatPanel({
   const [typing, setTyping] = useState(false)
   const [showThanks, setShowThanks] = useState(false)
   const bottomRef = useRef<HTMLDivElement>(null)
+  const typingTimer = useRef<number | null>(null)
   const icebreakers = useMemo(() => getIcebreakers(course), [course])
 
   useEffect(() => {
     bottomRef.current?.scrollIntoView({ behavior: 'smooth' })
   }, [messages, typing])
+
+  useEffect(() => {
+    return () => {
+      if (typingTimer.current != null) window.clearTimeout(typingTimer.current)
+    }
+  }, [])
 
   const sendText = (text: string) => {
     const trimmed = text.trim()
@@ -49,10 +56,18 @@ export function ChatPanel({
     onSend(trimmed)
     setInput('')
     setTyping(true)
-    window.setTimeout(() => {
-      onMentorReply(getMentorReply(course.id, trimmed))
+    const reply = getMentorReply(course.id, trimmed)
+    // Simulate peer typing: ~2–4.5s, longer for longer answers
+    const delay = Math.min(
+      4500,
+      Math.max(2000, 1600 + reply.length * 18 + Math.floor(Math.random() * 900)),
+    )
+    if (typingTimer.current != null) window.clearTimeout(typingTimer.current)
+    typingTimer.current = window.setTimeout(() => {
+      onMentorReply(reply)
       setTyping(false)
-    }, 1200)
+      typingTimer.current = null
+    }, delay)
   }
 
   return (
@@ -149,10 +164,15 @@ export function ChatPanel({
 
           {typing && (
             <div className="flex justify-start">
-              <div className="inline-flex items-center gap-0.5 rounded-lg border border-border px-3 py-2 text-sm text-slate-400">
-                <span className="typing-dot">·</span>
-                <span className="typing-dot">·</span>
-                <span className="typing-dot">·</span>
+              <div className="rounded-lg border border-border bg-white px-3 py-2">
+                <p className="mb-1 text-[10px] font-medium text-slate-400">
+                  {mentor.name.split(' ')[0]} is typing…
+                </p>
+                <div className="inline-flex items-center gap-1 text-slate-400">
+                  <span className="typing-dot h-1.5 w-1.5 rounded-full bg-slate-400" />
+                  <span className="typing-dot h-1.5 w-1.5 rounded-full bg-slate-400" />
+                  <span className="typing-dot h-1.5 w-1.5 rounded-full bg-slate-400" />
+                </div>
               </div>
             </div>
           )}

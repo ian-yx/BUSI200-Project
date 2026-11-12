@@ -1,5 +1,10 @@
 @import "tailwindcss";
 
+/* Limit scanning so production docs/ bundles don't deadlock Oxide */
+@source "./**/*.{ts,tsx,css}";
+@source not "../docs/**/*";
+@source not "../dist/**/*";
+
 @theme {
   --color-carolina: #4b9cd3;
   --color-carolina-dark: #3a7eab;
@@ -70,7 +75,8 @@ body {
 }
 
 .typing-dot {
-  animation: pulse 1s ease-in-out infinite;
+  display: inline-block;
+  animation: typing-bounce 1.05s ease-in-out infinite;
 }
 
 .typing-dot:nth-child(2) {
@@ -81,13 +87,16 @@ body {
   animation-delay: 0.3s;
 }
 
-@keyframes pulse {
+@keyframes typing-bounce {
   0%,
+  60%,
   100% {
     opacity: 0.35;
+    transform: translateY(0);
   }
-  50% {
+  30% {
     opacity: 1;
+    transform: translateY(-3px);
   }
 }
 

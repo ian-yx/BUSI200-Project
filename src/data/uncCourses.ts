@@ -253,39 +253,40 @@ export const courses: Course[] = [
     syllabusLabel: 'Calc 1 resources (Linda Green)',
   },
   {
-    id: 'busi-102',
-    code: 'BUSI 102',
-    title: 'Introduction to Financial Accounting',
-    category: 'Explore · Accounting foundation',
-    categoryKey: 'explore',
-    credits: '1.5',
-    professors: ['Courtney Knoll', 'Charles Skender', 'Section instructors vary'],
-    format: 'Often MOD (half-semester); lecture',
-    examFormat: 'Usually 2 exams + participation (section-dependent)',
-    attendance: 'Participation often graded',
-    aiPolicy: 'red',
-    aiNote: 'Calculation/exam work is individual—no AI.',
-    difficulty: 3.0,
-    tip: 'Not an Assured Enrollment Year 1 requirement (that’s BUSI 100), but useful before later accounting.',
+    id: 'data-110',
+    code: 'DATA 110',
+    title: 'Introduction to Data Science',
+    category: 'UBP Prerequisite · Statistics option',
+    categoryKey: 'prereq',
+    credits: '3.0',
+    professors: ['School of Data Science & Society instructors vary'],
+    format: 'Lecture / applied intro (section-specific)',
+    examFormat: 'Assignments, quizzes, and exams (section-specific)',
+    attendance: 'Section-dependent',
+    aiPolicy: 'yellow',
+    aiNote: 'Follow syllabus AI rules; graded analyses must be your own work.',
+    difficulty: 2.9,
+    tip: 'Current Assured Enrollment / UBP stats option alongside STOR 120 and STOR 155—compare teaching style before you pick.',
     description:
-      'Intro to financial reports: balance sheet, income statement, equity, and cash flows. Often runs as a MOD. Cannot double-credit with BUSI 106/107.',
+      'Broad survey of data science: ethics, visualization/communication, math/stat concepts, and computational thinking. Counts as a business statistics prerequisite option (C or better). FC-QUANT. Also a gateway toward Data Science pathways.',
     gradingBreakdown: [
-      { item: 'Exam 1', weight: 'Section-specific (~40%)' },
-      { item: 'Exam 2', weight: 'Section-specific (~50%)' },
-      { item: 'Participation', weight: 'Section-specific (~10%)' },
+      { item: 'Assignments / projects', weight: 'Section-specific' },
+      { item: 'Quizzes / exams', weight: 'Section-specific' },
+      { item: 'Participation', weight: 'Section-specific' },
     ],
-    gradeFloor: 'Optional explore course; strong foundation for accounting/finance tracks.',
+    gradeFloor: 'C or better for Assured Enrollment / UBP (not C-).',
     detailedAdvice: [
-      'Catalog credit: 1.5. MOD sections follow Kenan-Flagler module dates.',
-      'Debit/credit fundamentals early—later accounting builds on them.',
-      'BUSI 407 lists BUSI 102 as pre-/corequisite in catalog history.',
-      'Practice packets often mirror exam style.',
+      'Official AE/UBP stats choices: DATA 110, STOR 120, or STOR 155.',
+      'Useful if you like visualization + ethics + coding concepts more than classic inference.',
+      'Also feeds interest in Business + Data Science / analytics doubles.',
+      'Confirm section attributes in ConnectCarolina (honors versions exist).',
     ],
-    sourceNote: 'UNC Catalog (BUSI)',
-    tags: ['explore'],
-    catalogUrl: 'https://catalog.unc.edu/courses/busi/',
-    syllabusUrl: PUBLIC_SYLLABI,
-    syllabusLabel: 'UNC public syllabi portal',
+    genEd: 'FC-QUANT',
+    sourceNote: 'UNC Catalog (DATA); Kenan-Flagler Assured Enrollment / UBP prereqs',
+    tags: ['prereq', 'double'],
+    catalogUrl: 'https://catalog.unc.edu/search/?P=DATA+110',
+    syllabusUrl: 'https://catalog.unc.edu/courses/data/',
+    syllabusLabel: 'DATA course listing',
   },
   {
     id: 'idst-101',
@@ -613,13 +614,13 @@ export const mentors: Mentor[] = [
     identityTag: 'UBP',
     avatarColor: '#13294B',
     initials: 'MW',
-    courseIds: ['busi-102', 'econ-101', 'math-231'],
+    courseIds: ['data-110', 'econ-101', 'math-231'],
     courseHistory: {
-      'busi-102': { professor: 'Courtney Knoll', term: 'Spring 2024', grade: 'A' },
+      'data-110': { professor: 'SDSS section', term: 'Spring 2024', grade: 'A' },
       'econ-101': { professor: 'Kalina Staub', term: 'Fall 2023', grade: 'A-' },
       'math-231': { professor: 'Linda Green', term: 'Fall 2023', grade: 'B+' },
     },
-    specialties: ['BUSI 102', 'AP credit decisions', 'C-or-better strategy'],
+    specialties: ['DATA 110', 'AP credit decisions', 'C-or-better strategy'],
     strengths: ['ap-decision', 'recruiting', 'exams'],
     karma: 210,
     replyMinutes: 10,
@@ -674,9 +675,9 @@ export const mentors: Mentor[] = [
     identityTag: 'UBP',
     avatarColor: '#be123c',
     initials: 'CB',
-    courseIds: ['busi-102', 'busi-100', 'math-231'],
+    courseIds: ['data-110', 'busi-100', 'math-231'],
     courseHistory: {
-      'busi-102': {
+      'data-110': {
         professor: 'Charles Skender',
         term: 'Spring 2025',
         grade: 'A',
@@ -684,7 +685,7 @@ export const mentors: Mentor[] = [
       'busi-100': { professor: 'Section', term: 'Spring 2024', grade: 'A-' },
       'math-231': { professor: 'Section', term: 'Fall 2024', grade: 'B+' },
     },
-    specialties: ['Debits/credits', 'MOD timing', 'Recruiting grades'],
+    specialties: ['DATA 110 vs STOR', 'Quant options', 'Recruiting grades'],
     strengths: ['deep-dive', 'recruiting', 'exams'],
     karma: 158,
     replyMinutes: 7,
@@ -697,11 +698,11 @@ export const mentors: Mentor[] = [
     identityTag: 'UBP',
     avatarColor: '#0369a1',
     initials: 'NO',
-    courseIds: ['busi-200', 'econ-101', 'busi-102'],
+    courseIds: ['busi-200', 'econ-101', 'data-110'],
     courseHistory: {
       'busi-200': { professor: 'Shimul Melwani', term: 'Fall 2023', grade: 'A' },
       'econ-101': { professor: 'Rita Balaban', term: 'Fall 2023', grade: 'B+' },
-      'busi-102': { professor: 'Courtney Knoll', term: 'Spring 2024', grade: 'A-' },
+      'data-110': { professor: 'SDSS section', term: 'Spring 2024', grade: 'A-' },
     },
     specialties: ['BUSI 200 projects', 'EconAid', 'UBP roadmap'],
     strengths: ['deep-dive', 'explore-track', 'study-system'],
@@ -754,10 +755,10 @@ export const mentors: Mentor[] = [
     identityTag: 'FBA',
     avatarColor: '#334155',
     initials: 'LO',
-    courseIds: ['math-231', 'busi-102', 'econ-101'],
+    courseIds: ['math-231', 'data-110', 'econ-101'],
     courseHistory: {
       'math-231': { professor: 'Linda Green', term: 'Fall 2025', grade: 'A-' },
-      'busi-102': { professor: 'Courtney Knoll', term: 'Spring 2026', grade: 'A' },
+      'data-110': { professor: 'SDSS section', term: 'Spring 2026', grade: 'A' },
       'econ-101': { professor: 'Rita Balaban', term: 'Fall 2025', grade: 'A-' },
     },
     specialties: ['C-or-better plan', 'AP vs retake', 'Common Final'],
@@ -773,9 +774,9 @@ export const mentors: Mentor[] = [
     identityTag: 'UBP',
     avatarColor: '#9f1239',
     initials: 'DW',
-    courseIds: ['busi-102', 'stor-155', 'busi-200'],
+    courseIds: ['data-110', 'stor-155', 'busi-200'],
     courseHistory: {
-      'busi-102': {
+      'data-110': {
         professor: 'Charles Skender',
         term: 'Fall 2024',
         grade: 'A-',
@@ -787,7 +788,7 @@ export const mentors: Mentor[] = [
       },
       'busi-200': { professor: 'Shimul Melwani', term: 'Fall 2023', grade: 'A' },
     },
-    specialties: ['Mentor karma', 'McColl resources', 'Leadership stories'],
+    specialties: ['Mentor karma', 'McColl resources', 'DATA 110 pacing'],
     strengths: ['explore-track', 'recruiting', 'deep-dive'],
     karma: 245,
     replyMinutes: 15,
@@ -838,10 +839,10 @@ export const mentors: Mentor[] = [
     identityTag: 'UBP',
     avatarColor: '#15803d',
     initials: 'DA',
-    courseIds: ['econ-101', 'busi-102', 'stor-155'],
+    courseIds: ['econ-101', 'data-110', 'stor-155'],
     courseHistory: {
       'econ-101': { professor: 'Rita Balaban', term: 'Fall 2023', grade: 'B+' },
-      'busi-102': { professor: 'Charles Skender', term: 'Spring 2024', grade: 'A' },
+      'data-110': { professor: 'SDSS section', term: 'Spring 2024', grade: 'A' },
       'stor-155': { professor: 'Section', term: 'Fall 2024', grade: 'A-' },
     },
     specialties: ['EconAid', 'Accounting basics', 'Recruiting timeline'],
@@ -895,11 +896,11 @@ export const mentors: Mentor[] = [
     identityTag: 'UBP',
     avatarColor: '#6d28d9',
     initials: 'ER',
-    courseIds: ['busi-200', 'stor-155', 'busi-102'],
+    courseIds: ['busi-200', 'stor-155', 'data-110'],
     courseHistory: {
       'busi-200': { professor: 'Shimul Melwani', term: 'Fall 2023', grade: 'A' },
       'stor-155': { professor: 'Mario Giacomazzo', term: 'Spring 2024', grade: 'A' },
-      'busi-102': { professor: 'Courtney Knoll', term: 'Fall 2024', grade: 'A-' },
+      'data-110': { professor: 'SDSS section', term: 'Fall 2024', grade: 'A-' },
     },
     specialties: ['Team projects', 'Spreadsheet fluency', 'McColl study spots'],
     strengths: ['study-system', 'labs', 'explore-track'],
@@ -952,13 +953,13 @@ export const mentors: Mentor[] = [
     identityTag: 'UBP',
     avatarColor: '#475569',
     initials: 'CN',
-    courseIds: ['busi-102', 'econ-101', 'busi-200'],
+    courseIds: ['data-110', 'econ-101', 'busi-200'],
     courseHistory: {
-      'busi-102': { professor: 'Charles Skender', term: 'Spring 2024', grade: 'A' },
+      'data-110': { professor: 'SDSS section', term: 'Spring 2024', grade: 'A' },
       'econ-101': { professor: 'Kalina Staub', term: 'Fall 2023', grade: 'B+' },
       'busi-200': { professor: 'Shimul Melwani', term: 'Fall 2023', grade: 'A-' },
     },
-    specialties: ['MOD calendar', 'Practice packets', 'Interview stories'],
+    specialties: ['DATA 110 projects', 'Stats option pick', 'Interview stories'],
     strengths: ['recruiting', 'deep-dive', 'exams'],
     karma: 198,
     replyMinutes: 8,
@@ -1118,6 +1119,8 @@ export const mentors: Mentor[] = [
 ]
 
 type ReplyTopic =
+  | 'greeting'
+  | 'thanks'
   | 'first_weeks'
   | 'exams'
   | 'ap'
@@ -1128,7 +1131,26 @@ type ReplyTopic =
   | 'ai'
   | 'assured'
   | 'format'
+  | 'double'
+  | 'syllabus'
   | 'general'
+
+const GLOBAL_REPLIES: Partial<Record<ReplyTopic, string[]>> = {
+  greeting: [
+    'Hey! Happy to help with this class—ask about first weeks, grading, workload, Assured Enrollment, or anything else on your mind.',
+    'Hi! Fire away. Short questions are great: exams, weekly rhythm, AP credit, or “what surprised you?”',
+    'Hello! I’ve got you. What’s the #1 thing you’re unsure about for this course?',
+  ],
+  thanks: [
+    'Anytime—glad it helped. Ping me if another question pops up before registration.',
+    'You’re welcome! Mark the chat resolved when you’re set so I get a little Navigator karma.',
+    'No problem. You’ve got this—ask again if the syllabus still feels fuzzy.',
+  ],
+  double: [
+    'A lot of KFBS students double major or minor. Common first-year explores: COMP 110 (CS), PSYC 101, POLI 100, PLCY 101, plus stats options like STOR 120 / DATA 110.',
+    'If you’re testing a second major, take one intro this year without overloading Assured Enrollment C-or-better courses.',
+  ],
+}
 
 const REPLY_BANK: Record<string, Partial<Record<ReplyTopic, string[]>>> = {
   'busi-200': {
@@ -1324,41 +1346,41 @@ const REPLY_BANK: Record<string, Partial<Record<ReplyTopic, string[]>>> = {
       'MATH 231 is marathon training—short daily practice beats weekend binges.',
     ],
   },
-  'busi-102': {
+  'data-110': {
     first_weeks: [
-      'If it’s a MOD, mark the compressed calendar now. Master debits/credits in week 1–2 or the rest snowballs.',
-      'Buy/print the practice packet if your instructor uses one—Skender-style classes reward reps that look like exams.',
+      'Skim the ethics + visualization modules early—DATA 110 is a survey course, so falling behind on weekly labs snowballs.',
+      'Decide in week 1 whether you prefer DATA 110 vs STOR 120 vs STOR 155 for your Assured Enrollment stats slot.',
     ],
     exams: [
-      'Often 2 exams + participation. Exams are application of statement relationships, not memorizing definitions alone.',
-      'Redo every in-class example the same night. That’s the whole game.',
+      'Expect a mix of assignments/projects plus quizzes or exams. Practice explaining a chart in plain English—communication is part of the point.',
+      'Don’t treat it as pure coding bootcamp or pure stats class; graded work often blends both.',
     ],
     ap: [
-      'Not an Assured Enrollment Year 1 requirement (that’s BUSI 100). Take it if you want accounting/finance signal or later BUSI 407 prep.',
+      'AP Stats doesn’t automatically equal DATA 110. Confirm UNC credit tables and whether you still need a C-or-better stats option for Assured Enrollment.',
     ],
     workload: [
-      '1.5 credits but MOD pace can feel intense. Daily short practice > long weekend cram.',
+      'Steady weekly assignments beat weekend cram. Budget like a 3-credit quant/intro-CS hybrid.',
     ],
     attendance: [
-      'Participation is often graded. Sit where you can see the board; accounting is visual.',
+      'Section policies vary—if there are labs or in-class activities, show up; catch-up is painful.',
     ],
     professor: [
-      'Knoll/Skender and others differ in vibe, but all expect clean statement logic. Ask which financial statements appear on exam 1.',
+      'Instructors differ in coding depth vs conceptual survey. Read the syllabus for software tools (Python/R/spreadsheets) before shopping sections.',
     ],
     resources: [
-      'Practice packets, peer study, and catalog notes (no double credit with BUSI 106/107). Public syllabi portal for section PDFs when available.',
+      'SDSS advising + peer study groups. Catalog: Introduction to Data Science, FC-QUANT.',
     ],
     ai: [
-      'Calculation/exam work is individual—no AI. Use it only to quiz yourself on definitions if your syllabus allows.',
+      'Follow the syllabus AI clause. Using tools to explore ideas may be OK; submitting AI-written analyses usually isn’t.',
     ],
     assured: [
-      'Optional explore course for many FBAs. Useful résumé language for accounting/finance recruiting later.',
+      'Yes—DATA 110 is an official Assured Enrollment / UBP statistics prerequisite option (C or better, not C-).',
     ],
     format: [
-      'Often half-semester MOD, 1.5 credits, lecture. Watch Kenan-Flagler module dates—drop rules differ.',
+      '3 credits, broad data-science survey (ethics, viz, stats concepts, computational thinking). Honors sections exist.',
     ],
     general: [
-      'BUSI 102 is “learn to read the company’s scoreboard.” If debits/credits click, everything else gets easier.',
+      'DATA 110 is a strong pick if you want modern data literacy and a path toward analytics / Data Science alongside Business.',
     ],
   },
   'idst-101': {
@@ -1728,27 +1750,94 @@ export function findBestMatch(
 
 export function getIcebreakers(course: Course): string[] {
   const code = course.code
-  return [
+  const shared = [
+    `Hey! Quick intro—what should I know about ${code}?`,
     `What should I watch for in the first 3 weeks of ${code}?`,
-    `How are exams / grading structured, and what’s realistic for a solid grade?`,
-    `AP or transfer credit—skip ${code}, or take it at UNC?`,
+    `How are exams / grading structured for a solid grade?`,
     `What’s the real weekly workload like outside of lecture?`,
-    `How strict is attendance / participation in your section?`,
-    `Any tips on the professor’s style or how to use office hours?`,
-    `Where did you get help (tutoring, EconAid, peers, videos)?`,
-    `Anything about AI / Honor Code I should know for this class?`,
+    `Anything about AI / Honor Code I should know?`,
     `How does this course matter for Assured Enrollment / UBP?`,
-    `What does a typical week look like (lecture, recitation, homework)?`,
   ]
+
+  const byCategory: Record<string, string[]> = {
+    fba: [
+      `Is the FBA-reserved section of ${code} worth prioritizing?`,
+      `What does a typical week look like (lecture + ULA / cohort)?`,
+    ],
+    prereq: [
+      `AP or transfer credit—skip ${code}, or take it at UNC?`,
+      `Where did you get help (tutoring, peers, office hours)?`,
+      `Any tips for protecting the C-or-better grade floor?`,
+    ],
+    fyf: [
+      `When should first-years finish ${code} in the Foundations timeline?`,
+      `Can I pair ${code} with another Foundation the same semester?`,
+    ],
+    double: [
+      `Is ${code} a good first step toward a Business double major?`,
+      `What surprised you most after week 3?`,
+    ],
+    explore: [
+      `Who is this course best for among first-years?`,
+      `Any tips on the professor’s style or office hours?`,
+    ],
+  }
+
+  const extras = byCategory[course.categoryKey] ?? byCategory.explore
+  return [...shared.slice(0, 4), ...extras, ...shared.slice(4)].slice(0, 10)
 }
 
-const TOPIC_RULES: { topic: ReplyTopic; keys: string[] }[] = [
+const TOPIC_RULES: { topic: ReplyTopic; keys: string[]; weight: number }[] = [
+  {
+    topic: 'greeting',
+    weight: 40,
+    keys: [
+      'hello',
+      'hi ',
+      'hi!',
+      'hey',
+      'howdy',
+      'good morning',
+      'good afternoon',
+      'good evening',
+      "what's up",
+      'whats up',
+      'quick intro',
+      'nice to meet',
+    ],
+  },
+  {
+    topic: 'thanks',
+    weight: 45,
+    keys: [
+      'thank',
+      'thanks',
+      'thx',
+      'ty ',
+      'appreciate',
+      'that helps',
+      'got it',
+    ],
+  },
   {
     topic: 'first_weeks',
-    keys: ['first 3', 'first three', 'week 1', 'watch for', 'start', 'begin'],
+    weight: 30,
+    keys: [
+      'first 3',
+      'first three',
+      'week 1',
+      'week one',
+      'watch for',
+      'start',
+      'begin',
+      'early on',
+      'getting started',
+      'should i know',
+    ],
   },
   {
     topic: 'exams',
+    weight: 32,
     keys: [
       'exam',
       'midterm',
@@ -1760,26 +1849,70 @@ const TOPIC_RULES: { topic: ReplyTopic; keys: string[] }[] = [
       'difficult',
       'a solid',
       'get an a',
+      'curve',
+      'quiz',
+      'test',
     ],
   },
   {
     topic: 'ap',
-    keys: ['ap ', 'ap?', 'transfer', 'skip', 'place out', 'placement', 'credit'],
+    weight: 34,
+    keys: [
+      'ap ',
+      'ap?',
+      'transfer',
+      'skip',
+      'place out',
+      'placement',
+      'credit',
+      'ib ',
+      'exempt',
+    ],
   },
   {
     topic: 'workload',
-    keys: ['workload', 'hours', 'outside of', 'how much time', 'busy', 'weekly'],
+    weight: 28,
+    keys: [
+      'workload',
+      'hours',
+      'outside of',
+      'how much time',
+      'busy',
+      'weekly',
+      'time-consuming',
+      'heavy',
+    ],
   },
   {
     topic: 'attendance',
-    keys: ['attend', 'participation', 'poll', 'recitation', 'ula', 'absent'],
+    weight: 26,
+    keys: [
+      'attend',
+      'participation',
+      'poll',
+      'recitation',
+      'ula',
+      'absent',
+      'clicker',
+      'show up',
+    ],
   },
   {
     topic: 'professor',
-    keys: ['professor', 'prof', 'instructor', 'teaching', 'office hour', 'style'],
+    weight: 26,
+    keys: [
+      'professor',
+      'prof',
+      'instructor',
+      'teaching',
+      'office hour',
+      'style',
+      'who teaches',
+    ],
   },
   {
     topic: 'resources',
+    weight: 24,
     keys: [
       'help',
       'tutor',
@@ -1788,19 +1921,75 @@ const TOPIC_RULES: { topic: ReplyTopic; keys: string[] }[] = [
       'video',
       'where did you',
       'study',
+      'practice',
+      'office hours',
     ],
   },
   {
     topic: 'ai',
-    keys: ['ai', 'chatgpt', 'honor code', 'chatgpt', 'llm'],
+    weight: 36,
+    keys: [
+      ' ai',
+      'ai ',
+      'chatgpt',
+      'honor code',
+      'llm',
+      'copilot',
+      'claude',
+      'gemini',
+      'generative',
+    ],
   },
   {
     topic: 'assured',
-    keys: ['assured', 'fba', 'ubp', 'enrollment', 'c or better', 'seat'],
+    weight: 34,
+    keys: [
+      'assured',
+      'fba',
+      'ubp',
+      'enrollment',
+      'c or better',
+      'c-or-better',
+      'seat',
+      'prerequisite',
+      'prereq',
+      'grade floor',
+    ],
   },
   {
     topic: 'format',
-    keys: ['typical week', 'format', 'lecture', 'lab', 'mod', 'structure'],
+    weight: 22,
+    keys: [
+      'typical week',
+      'format',
+      'lecture',
+      'lab',
+      'mod',
+      'structure',
+      'syllabus overview',
+      'what does a week',
+    ],
+  },
+  {
+    topic: 'double',
+    weight: 30,
+    keys: [
+      'double major',
+      'double-major',
+      'second major',
+      'minor',
+      'cs ',
+      'computer science',
+      'psychology',
+      'public policy',
+      'poli sci',
+      'statistics',
+    ],
+  },
+  {
+    topic: 'syllabus',
+    weight: 20,
+    keys: ['syllabus', 'canvas', 'rubric', 'grading breakdown', 'breakdown'],
   },
 ]
 
@@ -1809,19 +1998,108 @@ function pick(lines: string[] | undefined, fallback: string): string {
   return lines[Math.floor(Math.random() * lines.length)]
 }
 
+function normalizeChatText(text: string): string {
+  const cleaned = text
+    .toLowerCase()
+    .replace(/[^a-z0-9\s'+]/g, ' ')
+    .replace(/\s+/g, ' ')
+  return ` ${cleaned} `
+}
+
+function scoreTopic(haystack: string, keys: string[]): number {
+  let hits = 0
+  for (const key of keys) {
+    if (haystack.includes(key)) hits += 1
+  }
+  return hits
+}
+
+function isGreetingOnly(text: string): boolean {
+  const stripped = text.trim().toLowerCase().replace(/[!?.]+$/g, '')
+  const greetings = new Set([
+    'hi',
+    'hey',
+    'hello',
+    'howdy',
+    'yo',
+    'sup',
+    'hi there',
+    'hey there',
+    'hello there',
+    'good morning',
+    'good afternoon',
+    'good evening',
+    "what's up",
+    'whats up',
+    'quick intro',
+  ])
+  if (greetings.has(stripped)) return true
+  const words = stripped.split(/\s+/).filter(Boolean)
+  return (
+    words.length <= 5 &&
+    (stripped.startsWith('hi ') ||
+      stripped.startsWith('hey ') ||
+      stripped.startsWith('hello ') ||
+      stripped.includes('quick intro') ||
+      stripped.includes('nice to meet'))
+  )
+}
+
 export function getMentorReply(courseId: string, userText: string): string {
+  const course = courses.find((c) => c.id === courseId)
   const bank = REPLY_BANK[courseId] ?? REPLY_BANK['busi-200']
-  const lower = ` ${userText.toLowerCase()} `
+  const haystack = normalizeChatText(userText)
   const fallback =
     pick(bank.general, '') ||
-    'Happy to help—ask about first weeks, exams, AP credit, workload, attendance, or resources.'
+    `Happy to help with ${course?.code ?? 'this course'}—ask about first weeks, exams, AP credit, workload, attendance, or Assured Enrollment.`
 
-  for (const rule of TOPIC_RULES) {
-    if (rule.keys.some((k) => lower.includes(k))) {
-      return pick(bank[rule.topic], fallback)
-    }
+  if (isGreetingOnly(userText)) {
+    return pick(GLOBAL_REPLIES.greeting, fallback)
   }
-  return pick(bank.general, fallback)
+
+  let best: { topic: ReplyTopic; score: number } | null = null
+  for (const rule of TOPIC_RULES) {
+    const hits = scoreTopic(haystack, rule.keys)
+    if (hits === 0) continue
+    const score = hits * rule.weight
+    if (!best || score > best.score) best = { topic: rule.topic, score }
+  }
+
+  if (!best) {
+    return pick(bank.general, fallback)
+  }
+
+  if (best.topic === 'greeting') {
+    return pick(GLOBAL_REPLIES.greeting, fallback)
+  }
+  if (best.topic === 'thanks') {
+    return pick(GLOBAL_REPLIES.thanks, fallback)
+  }
+  if (best.topic === 'double') {
+    return pick(
+      [
+        ...(GLOBAL_REPLIES.double ?? []),
+        ...(course?.categoryKey === 'double'
+          ? [
+              `${course.code} is a common first foothold for Business students exploring a second major—use it to test fit before overcommitting.`,
+            ]
+          : []),
+      ],
+      fallback,
+    )
+  }
+  if (best.topic === 'syllabus') {
+    return pick(
+      [
+        ...(bank.format ?? []),
+        ...(bank.exams ?? []),
+        `Check the official syllabus / Canvas for section-specific weights—I can still share what was typical when I took ${course?.code ?? 'it'}.`,
+      ],
+      fallback,
+    )
+  }
+
+  return pick(bank[best.topic], pick(GLOBAL_REPLIES[best.topic], fallback))
 }
 
 export function getCourseById(id: string): Course | undefined {
