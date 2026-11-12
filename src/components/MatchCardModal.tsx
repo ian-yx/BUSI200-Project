@@ -1,7 +1,15 @@
-import { useEffect, useState } from 'react'
-import { BadgeCheck, CheckCircle2, Loader2, Sparkles, X } from 'lucide-react'
+import { useEffect, useMemo, useState } from 'react'
 import {
-  findBestMatch,
+  BadgeCheck,
+  CheckCircle2,
+  Radar,
+  Sparkles,
+  Users,
+  X,
+} from 'lucide-react'
+import {
+  findTopMatches,
+  mentors,
   type Course,
   type MatchResult,
   type UserProfile,
@@ -17,6 +25,13 @@ interface MatchCardModalProps {
 
 type Phase = 'scanning' | 'ready'
 
+const SCAN_LINES = [
+  'Reading your pathway & goals…',
+  'Filtering peers who completed this course…',
+  'Scoring fit on interests, AP credit, and reply style…',
+  'Ranking top matches…',
+]
+
 export function MatchCardModal({
   course,
   profile,
@@ -25,22 +40,47 @@ export function MatchCardModal({
   onEditProfile,
 }: MatchCardModalProps) {
   const [phase, setPhase] = useState<Phase>('scanning')
-  const [result, setResult] = useState<MatchResult | null>(null)
+  const [results, setResults] = useState<MatchResult[]>([])
+  const [selectedId, setSelectedId] = useState<string | null>(null)
   const [connecting, setConnecting] = useState(false)
+  const [scanLine, setScanLine] = useState(0)
+  const [scanPct, setScanPct] = useState(8)
+
+  const previewMentors = useMemo(
+    () =>
+      mentors
+        .filter((m) => m.courseIds.includes(course.id))
+        .slice(0, 6),
+    [course.id],
+  )
 
   useEffect(() => {
-    const match = findBestMatch(course.id, profile)
-    const timer = window.setTimeout(() => {
-      setResult(match)
+    const matches = findTopMatches(course.id, profile, 3)
+    const lineTimer = window.setInterval(() => {
+      setScanLine((i) => (i + 1) % SCAN_LINES.length)
+    }, 550)
+    const pctTimer = window.setInterval(() => {
+      setScanPct((p) => Math.min(96, p + 7 + Math.floor(Math.random() * 6)))
+    }, 280)
+    const doneTimer = window.setTimeout(() => {
+      setResults(matches)
+      setSelectedId(matches[0]?.mentor.id ?? null)
       setPhase('ready')
-    }, 1400)
-    return () => window.clearTimeout(timer)
+      setScanPct(100)
+    }, 2400)
+    return () => {
+      window.clearInterval(lineTimer)
+      window.clearInterval(pctTimer)
+      window.clearTimeout(doneTimer)
+    }
   }, [course.id, profile])
 
+  const selected = results.find((r) => r.mentor.id === selectedId) ?? null
+
   const handleConnect = () => {
-    if (!result) return
+    if (!selected) return
     setConnecting(true)
-    window.setTimeout(() => onConfirmMatch(result), 900)
+    window.setTimeout(() => onConfirmMatch(selected), 900)
   }
 
   return (
@@ -50,24 +90,24 @@ export function MatchCardModal({
       role="presentation"
     >
       <div
-        className="relative w-full max-w-md overflow-hidden rounded-t-xl bg-white shadow-xl sm:rounded-xl"
+        className="relative custom-scroll max-h-[92svh] w-full max-w-lg overflow-y-auto rounded-t-xl bg-white shadow-xl sm:rounded-xl"
         onClick={(e) => e.stopPropagation()}
         role="dialog"
         aria-modal="true"
       >
-        {connecting && result && (
+        {connecting && selected && (
           <div className="absolute inset-0 z-20 flex items-center justify-center bg-white/95 p-6">
             <div className="text-center">
               <CheckCircle2 className="mx-auto h-12 w-12 text-emerald-500" />
               <h3 className="mt-2 text-lg font-semibold text-navy">Connected</h3>
               <p className="mt-1 text-sm text-slate-600">
-                Opening chat with {result.mentor.name}…
+                Opening chat with {selected.mentor.name}…
               </p>
             </div>
           </div>
         )}
 
-        <div className="flex items-start justify-between border-b border-border px-5 py-4">
+        <div className="sticky top-0 z-10 flex items-start justify-between border-b border-border bg-white px-5 py-4">
           <div>
             <p className="text-[11px] font-semibold uppercase tracking-wide text-carolina">
               Smart match
@@ -84,81 +124,133 @@ export function MatchCardModal({
           </button>
         </div>
 
-        {phase === 'scanning' || !result ? (
-          <div className="flex flex-col items-center px-6 py-12 text-center">
-            <Loader2 className="h-10 w-10 animate-spin text-carolina" />
-            <p className="mt-4 text-sm font-medium text-navy">
-              Matching you with a peer for {course.code}…
+        {phase === 'scanning' ? (
+          <div className="px-6 py-10 text-center">
+            <div className="relative mx-auto flex h-28 w-28 items-center justify-center">
+              <div className="absolute inset-0 animate-ping rounded-full bg-carolina/20" />
+              <div className="absolute inset-2 animate-pulse rounded-full border-2 border-dashed border-carolina/50" />
+              <Radar className="relative h-10 w-10 text-carolina" />
+            </div>
+
+            <p className="mt-5 text-sm font-semibold text-navy">
+              Matching in progress…
             </p>
-            <p className="mt-1 text-xs text-slate-500">
-              Using your pathway, interests, AP credits, and goals
+            <p className="mt-1 min-h-[1.25rem] text-xs text-slate-500">
+              {SCAN_LINES[scanLine]}
             </p>
+
+            <div className="mx-auto mt-5 h-2 w-full max-w-xs overflow-hidden rounded-full bg-slate-100">
+              <div
+                className="h-full rounded-full bg-carolina transition-all duration-300"
+                style={{ width: `${scanPct}%` }}
+              />
+            </div>
+            <p className="mt-2 text-[11px] tabular-nums text-slate-400">
+              {scanPct}%
+            </p>
+
+            <div className="mt-6 flex justify-center -space-x-2">
+              {previewMentors.map((m) => (
+                <div
+                  key={m.id}
+                  className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white text-[10px] font-bold text-white shadow-sm"
+                  style={{ backgroundColor: m.avatarColor }}
+                  title={m.name}
+                >
+                  {m.initials}
+                </div>
+              ))}
+              <div className="flex h-9 w-9 items-center justify-center rounded-full border-2 border-white bg-slate-200 text-[10px] font-bold text-slate-600">
+                <Users className="h-3.5 w-3.5" />
+              </div>
+            </div>
           </div>
         ) : (
-          <div className="px-5 py-5">
-            <div className="flex items-center gap-3">
-              <div
-                className="flex h-14 w-14 items-center justify-center rounded-full text-sm font-bold text-white"
-                style={{ backgroundColor: result.mentor.avatarColor }}
-              >
-                {result.mentor.initials}
-              </div>
-              <div className="min-w-0">
-                <p className="flex items-center gap-1.5 font-semibold text-navy">
-                  {result.mentor.name}
-                  <BadgeCheck
-                    className="h-4 w-4 text-carolina"
-                    aria-label="Verified UNC email"
-                  />
-                </p>
-                <p className="text-xs text-slate-500">
-                  {result.mentor.year} · {result.mentor.track} ·{' '}
-                  {result.mentor.identityTag}
-                </p>
-                <p className="mt-1 text-sm font-semibold text-carolina">
-                  {result.score}% match
-                </p>
-              </div>
-            </div>
-
-            {result.mentor.courseHistory[course.id] && (
-              <p className="mt-4 rounded-lg bg-navy px-3 py-2 text-xs text-white">
-                Took {course.code} with{' '}
-                {result.mentor.courseHistory[course.id].professor} ·{' '}
-                {result.mentor.courseHistory[course.id].term} ·{' '}
-                {result.mentor.courseHistory[course.id].grade}
-              </p>
-            )}
-
-            <div className="mt-4">
-              <p className="text-[11px] font-semibold uppercase tracking-wide text-slate-400">
-                Why this peer
-              </p>
-              <ul className="mt-2 space-y-1.5">
-                {result.reasons.map((r) => (
-                  <li
-                    key={r}
-                    className="flex gap-2 text-sm text-slate-700"
-                  >
-                    <Sparkles className="mt-0.5 h-3.5 w-3.5 shrink-0 text-carolina" />
-                    {r}
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <p className="mt-4 text-xs text-slate-400">
-              10-min micro-chat · up to 5 turns · no cold-DM pressure
+          <div className="px-4 py-4 sm:px-5">
+            <p className="mb-3 text-sm text-slate-600">
+              We found{' '}
+              <span className="font-semibold text-navy">{results.length}</span>{' '}
+              strong peer
+              {results.length === 1 ? '' : 's'} for {course.code}. Pick one to
+              start a 10-min micro-chat.
             </p>
 
-            <div className="mt-5 flex flex-col gap-2">
+            <div className="space-y-2.5">
+              {results.map((result, index) => {
+                const active = selectedId === result.mentor.id
+                const history = result.mentor.courseHistory[course.id]
+                return (
+                  <button
+                    key={result.mentor.id}
+                    type="button"
+                    onClick={() => setSelectedId(result.mentor.id)}
+                    className={`w-full rounded-xl border p-3.5 text-left transition ${
+                      active
+                        ? 'border-carolina bg-carolina/5 ring-2 ring-carolina/25'
+                        : 'border-border hover:border-carolina/40'
+                    }`}
+                  >
+                    <div className="flex gap-3">
+                      <div
+                        className="flex h-12 w-12 shrink-0 items-center justify-center rounded-full text-sm font-bold text-white"
+                        style={{ backgroundColor: result.mentor.avatarColor }}
+                      >
+                        {result.mentor.initials}
+                      </div>
+                      <div className="min-w-0 flex-1">
+                        <div className="flex flex-wrap items-center gap-1.5">
+                          {index === 0 && (
+                            <span className="rounded bg-navy px-1.5 py-0.5 text-[10px] font-bold text-white">
+                              Best fit
+                            </span>
+                          )}
+                          <span className="font-semibold text-navy">
+                            {result.mentor.name}
+                          </span>
+                          <BadgeCheck
+                            className="h-3.5 w-3.5 text-carolina"
+                            aria-label="Verified"
+                          />
+                          <span className="ml-auto text-sm font-bold tabular-nums text-carolina">
+                            {result.score}%
+                          </span>
+                        </div>
+                        <p className="mt-0.5 text-xs text-slate-500">
+                          {result.mentor.year} · {result.mentor.track} ·{' '}
+                          {result.mentor.identityTag}
+                        </p>
+                        {history && (
+                          <p className="mt-1.5 text-[11px] text-slate-600">
+                            {course.code} · {history.professor} · {history.term}{' '}
+                            · {history.grade}
+                          </p>
+                        )}
+                        <div className="mt-2 flex flex-wrap gap-1">
+                          {result.reasons.map((r) => (
+                            <span
+                              key={r}
+                              className="inline-flex items-center gap-1 rounded-md bg-slate-100 px-1.5 py-0.5 text-[10px] text-slate-600"
+                            >
+                              <Sparkles className="h-2.5 w-2.5 text-carolina" />
+                              {r}
+                            </span>
+                          ))}
+                        </div>
+                      </div>
+                    </div>
+                  </button>
+                )
+              })}
+            </div>
+
+            <div className="mt-4 flex flex-col gap-2">
               <button
                 type="button"
                 onClick={handleConnect}
-                disabled={connecting}
+                disabled={!selected || connecting}
                 className="w-full rounded-md bg-carolina py-2.5 text-sm font-semibold text-white hover:bg-carolina-dark disabled:opacity-60"
               >
-                Start micro-chat
+                Chat with {selected?.mentor.name ?? 'peer'}
               </button>
               <button
                 type="button"

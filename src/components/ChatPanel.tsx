@@ -160,16 +160,19 @@ export function ChatPanel({
         </div>
 
         <div className="border-t border-border px-3 pb-[max(0.75rem,env(safe-area-inset-bottom))] pt-2">
-          <div className="mb-2 flex gap-1.5 overflow-x-auto pb-1">
+          <p className="mb-1.5 text-[10px] font-semibold uppercase tracking-wide text-slate-400">
+            Suggested questions · tap to send
+          </p>
+          <div className="mb-2 flex max-h-[4.5rem] flex-wrap gap-1.5 overflow-y-auto pb-1">
             {icebreakers.map((pill) => (
               <button
                 key={pill}
                 type="button"
                 disabled={typing}
                 onClick={() => sendText(pill)}
-                className="shrink-0 rounded-full border border-border bg-surface px-2.5 py-1 text-[11px] text-slate-700 hover:border-carolina/40 disabled:opacity-50"
+                className="rounded-full border border-border bg-surface px-2.5 py-1 text-left text-[11px] leading-snug text-slate-700 hover:border-carolina/40 disabled:opacity-50"
               >
-                {pill.length > 42 ? `${pill.slice(0, 42)}…` : pill}
+                {pill.length > 48 ? `${pill.slice(0, 48)}…` : pill}
               </button>
             ))}
           </div>
@@ -183,7 +186,7 @@ export function ChatPanel({
             <input
               value={input}
               onChange={(e) => setInput(e.target.value)}
-              placeholder="Ask a question…"
+              placeholder="Type any question (or tap a suggestion)…"
               className="flex-1 rounded-md border border-border bg-surface px-3 py-2 text-sm outline-none focus:border-carolina"
             />
             <button
