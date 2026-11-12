@@ -7,6 +7,7 @@ import {
   Users,
   X,
 } from 'lucide-react'
+import { MATCH_POLICY } from '../data/matchPolicy'
 import {
   findTopMatches,
   mentors,
@@ -26,10 +27,10 @@ interface MatchCardModalProps {
 type Phase = 'scanning' | 'ready'
 
 const SCAN_LINES = [
-  'Reading your pathway & goals…',
+  'Applying knowledge-base matching policy…',
   'Filtering peers who completed this course…',
-  'Scoring fit on interests, AP credit, and reply style…',
-  'Ranking top matches…',
+  'Scoring pathway, interests, AP credit, and reply style…',
+  'Ranking top 1–3 matches…',
 ]
 
 export function MatchCardModal({
@@ -167,13 +168,36 @@ export function MatchCardModal({
           </div>
         ) : (
           <div className="px-4 py-4 sm:px-5">
-            <p className="mb-3 text-sm text-slate-600">
+            <p className="mb-2 text-sm text-slate-600">
               We found{' '}
               <span className="font-semibold text-navy">{results.length}</span>{' '}
               strong peer
               {results.length === 1 ? '' : 's'} for {course.code}. Pick one to
               start a 10-min micro-chat.
             </p>
+
+            <details className="mb-3 rounded-lg border border-border bg-slate-50 px-3 py-2">
+              <summary className="cursor-pointer text-[11px] font-semibold text-navy">
+                Matching policy (knowledge base)
+              </summary>
+              <p className="mt-2 text-[11px] leading-relaxed text-slate-500">
+                {MATCH_POLICY.summary}
+              </p>
+              <ul className="mt-2 space-y-1">
+                {MATCH_POLICY.rules.slice(0, 4).map((rule) => (
+                  <li key={rule.id} className="text-[11px] text-slate-500">
+                    <span className="font-medium text-slate-700">
+                      {rule.title}
+                    </span>
+                    {' · '}
+                    {rule.weight}
+                  </li>
+                ))}
+              </ul>
+              <p className="mt-2 text-[10px] text-slate-400">
+                Full rules live under About · v{MATCH_POLICY.version}
+              </p>
+            </details>
 
             <div className="space-y-2.5">
               {results.map((result, index) => {

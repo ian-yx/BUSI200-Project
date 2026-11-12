@@ -1,5 +1,6 @@
 export type AiPolicy = 'green' | 'yellow' | 'red'
-export type FilterTag = 'all' | 'fba' | 'prereq' | 'explore'
+export type FilterTag = 'all' | 'fba' | 'prereq' | 'fyf' | 'double' | 'explore'
+export type CourseCategoryKey = 'fba' | 'prereq' | 'fyf' | 'double' | 'explore'
 export type Pathway =
   | 'assured-enrollment'
   | 'pre-business'
@@ -13,7 +14,7 @@ export interface Course {
   code: string
   title: string
   category: string
-  categoryKey: 'fba' | 'prereq' | 'explore'
+  categoryKey: CourseCategoryKey
   credits: string
   professors: string[]
   format: string
@@ -114,6 +115,11 @@ export const INTEREST_OPTIONS = [
   'Strategy',
   'Real Estate',
   'International Business',
+  'Computer Science',
+  'Economics',
+  'Public Policy',
+  'Psychology',
+  'Statistics',
 ] as const
 
 export const AP_OPTIONS = [

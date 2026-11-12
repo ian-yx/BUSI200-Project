@@ -25,6 +25,9 @@ export {
   TOPIC_OPTIONS,
 } from './types'
 
+export { MATCH_POLICY } from './matchPolicy'
+export type { MatchPolicyRule } from './matchPolicy'
+
 export const AI_POLICY_META: Record<
   import('./types').AiPolicy,
   { label: string; short: string; color: string; bg: string }
@@ -53,6 +56,8 @@ export const FILTER_OPTIONS: { id: FilterTag; label: string }[] = [
   { id: 'all', label: 'All' },
   { id: 'fba', label: 'FBA Year 1' },
   { id: 'prereq', label: 'UBP Prerequisites' },
+  { id: 'fyf', label: 'First-Year Foundations' },
+  { id: 'double', label: 'Double-major intros' },
   { id: 'explore', label: 'Explore' },
 ]
 
@@ -281,6 +286,278 @@ export const courses: Course[] = [
     catalogUrl: 'https://catalog.unc.edu/courses/busi/',
     syllabusUrl: PUBLIC_SYLLABI,
     syllabusLabel: 'UNC public syllabi portal',
+  },
+  {
+    id: 'idst-101',
+    code: 'IDST 101',
+    title: 'College Thriving',
+    category: 'First-Year Foundations · Required',
+    categoryKey: 'fyf',
+    credits: '1.0',
+    professors: ['College of Arts & Sciences instructional team'],
+    format: 'Small / discussion-oriented first-year course',
+    examFormat: 'Reflection, participation, and short assignments (section-specific)',
+    attendance: 'Expect regular attendance—this is a transition course',
+    aiPolicy: 'yellow',
+    aiNote: 'Personal reflections should be your own voice.',
+    difficulty: 1.6,
+    tip: 'Must be completed in your first academic year (two semesters). Pair it with another FY Foundation so you finish on time.',
+    description:
+      'Part of UNC’s IDEAs in Action First-Year Foundations. Helps first-years navigate the transition to college, take ownership of learning, and engage Carolina opportunities. Honors students may use HNRS 101 for this requirement.',
+    gradingBreakdown: [
+      { item: 'Participation / engagement', weight: 'Section-specific' },
+      { item: 'Reflections / short assignments', weight: 'Section-specific' },
+    ],
+    gradeFloor: 'Required First-Year Foundation (complete within year 1).',
+    detailedAdvice: [
+      'Advising tip: take ~2 First-Year Foundations per semester (~4 credits total) to finish on schedule.',
+      'Treat it as onboarding, not an afterthought—calendar conflicts bite later.',
+      'If you’re Honors, ask about HNRS 101 as an alternate path.',
+    ],
+    genEd: 'FY-THRIVE',
+    sourceNote: 'UNC Catalog · IDEAs in Action First-Year Foundations',
+    tags: ['fyf'],
+    catalogUrl: 'https://catalog.unc.edu/undergraduate/ideas-in-action/',
+    syllabusUrl: 'https://advising.unc.edu/first-year-students/course-planning-first-semester/',
+    syllabusLabel: 'First-semester planning (Advising)',
+  },
+  {
+    id: 'idst-111l',
+    code: 'IDST 111L',
+    title: 'Data Literacy Lab',
+    category: 'First-Year Foundations · Required',
+    categoryKey: 'fyf',
+    credits: '1.0',
+    professors: ['Section instructors vary'],
+    format: 'Lab / applied data literacy',
+    examFormat: 'Lab exercises and short assessments (section-specific)',
+    attendance: 'Lab attendance is typically required',
+    aiPolicy: 'yellow',
+    aiNote: 'Use tools as instructed; don’t outsource required lab work.',
+    difficulty: 2.0,
+    tip: 'Another Year-1 Foundation—often paired with ENGL 105 in the same semester.',
+    description:
+      'Required First-Year Foundations lab (FY-DATA) introducing practical data literacy for Carolina students. Complete within your first two semesters.',
+    gradingBreakdown: [
+      { item: 'Lab exercises', weight: 'Section-specific' },
+      { item: 'Quizzes / participation', weight: 'Section-specific' },
+    ],
+    gradeFloor: 'Required First-Year Foundation (complete within year 1).',
+    detailedAdvice: [
+      'Does not replace STOR 155 / STOR 120 / DATA 110 for the business stats prereq.',
+      'Useful warm-up before heavier quant courses.',
+      'Check ConnectCarolina for open lab sections early—seats move fast.',
+    ],
+    genEd: 'FY-DATA',
+    sourceNote: 'UNC Catalog · IDEAs in Action',
+    tags: ['fyf'],
+    catalogUrl: 'https://catalog.unc.edu/undergraduate/ideas-in-action/',
+    syllabusUrl: 'https://ideasinaction.unc.edu/about/navigating-at-a-glance-fall25/',
+    syllabusLabel: 'IDEAs at a glance',
+  },
+  {
+    id: 'engl-105',
+    code: 'ENGL 105',
+    title: 'English Composition and Rhetoric',
+    category: 'First-Year Foundations · Required',
+    categoryKey: 'fyf',
+    credits: '3.0',
+    professors: ['Writing Program instructors vary'],
+    format: 'Seminar-style writing workshops',
+    examFormat: 'Portfolios, drafts, peer review, presentations (section-specific)',
+    attendance: 'Workshop attendance and peer review are usually critical',
+    aiPolicy: 'red',
+    aiNote: 'Writing must be your own; follow the Writing Program / syllabus AI policy strictly.',
+    difficulty: 2.5,
+    tip: 'Required in year 1. Draft early—peer-review culture rewards revision, not one-night papers.',
+    description:
+      'FY-WRITING First-Year Foundation. Builds research-university writing and rhetoric skills. Must be completed during the first academic year on campus.',
+    gradingBreakdown: [
+      { item: 'Major writing projects / portfolio', weight: 'Typically majority' },
+      { item: 'Drafts, peer review, participation', weight: 'Significant' },
+    ],
+    gradeFloor: 'Required First-Year Foundation (complete within year 1).',
+    detailedAdvice: [
+      'Common pairing: ENGL 105 + IDST 111L in one semester.',
+      'Use the Writing Center early, not the night before a deadline.',
+      'Business students: treat this as communication skill-building for BUSI 401 later.',
+    ],
+    genEd: 'FY-WRITING',
+    sourceNote: 'UNC Catalog · IDEAs in Action First-Year Foundations',
+    tags: ['fyf'],
+    catalogUrl: 'https://catalog.unc.edu/search/?P=ENGL+105',
+    syllabusUrl: 'https://englishcomplit.unc.edu/writing-program/',
+    syllabusLabel: 'UNC Writing Program',
+  },
+  {
+    id: 'comp-110',
+    code: 'COMP 110',
+    title: 'Introduction to Programming',
+    category: 'Double-major intro · Computer Science',
+    categoryKey: 'double',
+    credits: '3.0',
+    professors: ['Alyssa Byrnes', 'Section instructors vary'],
+    format: 'Large lecture + programming assignments',
+    examFormat: 'Programming projects + exams (section-specific)',
+    attendance: 'Lecture policies vary; project deadlines are strict',
+    aiPolicy: 'yellow',
+    aiNote: 'Follow CS department / syllabus rules—many forbid AI-generated code on graded work.',
+    difficulty: 3.4,
+    tip: 'Popular Business + CS pathway starter. Prereq math/stats gate—check catalog before registering. Cannot take after COMP 210 credit.',
+    description:
+      'Introduces programming from a computational perspective (problem decomposition, data analysis, abstraction, ethics). No prior coding expected. FC-QUANT. Common first CS course for students exploring a Business + Computer Science double major.',
+    gradingBreakdown: [
+      { item: 'Programming assignments / projects', weight: 'Often heavy' },
+      { item: 'Exams / quizzes', weight: 'Section-specific' },
+    ],
+    gradeFloor: 'CS majors typically need C or better in gateway sequences—check CS advising.',
+    detailedAdvice: [
+      'Catalog prereq: C or better in MATH 130/152/210/231/129P, PHIL 155, or STOR 120/151/155.',
+      'Start early on projects; debugging time explodes near deadlines.',
+      '~60% of KFBS majors double major/minor—CS is a high-ROI pairing for product/fintech paths.',
+    ],
+    genEd: 'FC-QUANT',
+    sourceNote: 'UNC Catalog (COMP); Kenan-Flagler notes ~60% of majors double major/minor',
+    tags: ['double'],
+    catalogUrl: 'https://catalog.unc.edu/search/?P=COMP+110',
+    syllabusUrl: 'https://cs.unc.edu/',
+    syllabusLabel: 'UNC Computer Science',
+  },
+  {
+    id: 'psyc-101',
+    code: 'PSYC 101',
+    title: 'General Psychology',
+    category: 'Double-major intro · Psychology',
+    categoryKey: 'double',
+    credits: '3.0',
+    professors: ['Section instructors vary'],
+    format: 'Large lecture; sometimes with discussion components',
+    examFormat: 'Multiple exams / quizzes common',
+    attendance: 'Section-dependent; some use clickers/polls',
+    aiPolicy: 'red',
+    aiNote: 'Graded quizzes/exams are individual Honor Code work.',
+    difficulty: 2.6,
+    tip: 'Useful for consulting/marketing/people-analytics interest; also a common Arts & Sciences pairing.',
+    description:
+      'Survey of major areas in psychology. Frequently used by students exploring Psychology as a second major or Gen Ed Ways of Knowing / social science distribution alongside Business.',
+    gradingBreakdown: [
+      { item: 'Exams', weight: 'Typically majority' },
+      { item: 'Quizzes / assignments', weight: 'Section-specific' },
+    ],
+    gradeFloor: 'Check Psychology major gateway rules if you plan to continue.',
+    detailedAdvice: [
+      'Read before lecture—exam questions often test application, not vocab lists alone.',
+      'Pairs well with BUSI people/leadership courses later.',
+      'Confirm how it maps to IDEAs Focus Capacities in your degree audit.',
+    ],
+    genEd: 'Often FC-KNOWING / social science (confirm section)',
+    sourceNote: 'UNC Catalog (PSYC); UNC Admissions Major Mashup popular pairings',
+    tags: ['double'],
+    catalogUrl: 'https://catalog.unc.edu/search/?P=PSYC+101',
+    syllabusUrl: PUBLIC_SYLLABI,
+    syllabusLabel: 'UNC public syllabi portal',
+  },
+  {
+    id: 'poli-100',
+    code: 'POLI 100',
+    title: 'American Democracy in Changing Times',
+    category: 'Double-major intro · Political Science',
+    categoryKey: 'double',
+    credits: '3.0',
+    professors: ['Section instructors vary'],
+    format: 'Lecture / discussion',
+    examFormat: 'Exams, quizzes, and writing (section-specific)',
+    attendance: 'Section-dependent',
+    aiPolicy: 'yellow',
+    aiNote: 'Cite sources on writing; no AI on closed assessments.',
+    difficulty: 2.7,
+    tip: 'Business + Econ students often add Poli Sci / Public Policy—this is a common first political science foothold.',
+    description:
+      'Introductory political science course on American democratic institutions and change. Useful for Business students exploring Political Science or policy-oriented double majors (Econ+Poli Sci is a frequent Carolina pairing).',
+    gradingBreakdown: [
+      { item: 'Exams / quizzes', weight: 'Section-specific' },
+      { item: 'Writing / participation', weight: 'Section-specific' },
+    ],
+    gradeFloor: 'Follow Political Science major requirements if continuing.',
+    detailedAdvice: [
+      'Good companion to ECON 101 if you like markets + institutions.',
+      'Watch for Foundations of American Democracy Gen Ed overlays on some sections.',
+      'Use office hours for essay prompts—rubrics reward clear thesis structure.',
+    ],
+    genEd: 'Varies by section (check IDEAs attributes)',
+    sourceNote: 'UNC Catalog (POLI); Econ department notes Poli Sci as a common second major',
+    tags: ['double'],
+    catalogUrl: 'https://catalog.unc.edu/courses/poli/',
+    syllabusUrl: PUBLIC_SYLLABI,
+    syllabusLabel: 'UNC public syllabi portal',
+  },
+  {
+    id: 'stor-120',
+    code: 'STOR 120',
+    title: 'Foundations of Statistics and Data Science',
+    category: 'Double-major intro · Statistics option',
+    categoryKey: 'double',
+    credits: '3.0',
+    professors: ['Section instructors vary'],
+    format: 'Lecture + computational labs (section-specific)',
+    examFormat: 'Homework, midterms, final (section-specific)',
+    attendance: 'Lab/lecture policies vary',
+    aiPolicy: 'yellow',
+    aiNote: 'Debugging help may be OK; graded solutions must be yours.',
+    difficulty: 3.0,
+    tip: 'Alternate UBP stats option alongside STOR 155 / DATA 110—and a natural on-ramp toward Statistics & Analytics.',
+    description:
+      'Introductory statistics / data science foundations. Counts among business statistics prerequisite options and supports students eyeing a Business + Statistics & Analytics path (a top Carolina double-major mashup with CS as well).',
+    gradingBreakdown: [
+      { item: 'Homework / labs', weight: 'Often substantial' },
+      { item: 'Exams', weight: 'Section-specific' },
+    ],
+    gradeFloor: 'C or better for Assured Enrollment / UBP stats requirement.',
+    detailedAdvice: [
+      'Compare STOR 120 vs STOR 155 vs DATA 110 for teaching style and schedule.',
+      'If you like coding + stats, this pairs nicely with later COMP coursework.',
+      'Stay current weekly—computational labs compound.',
+    ],
+    genEd: 'Often FC-QUANT (confirm section)',
+    sourceNote: 'UNC Catalog (STOR); KFBS prereq list; Admissions Major Mashup',
+    tags: ['double', 'prereq'],
+    catalogUrl: 'https://catalog.unc.edu/search/?P=STOR+120',
+    syllabusUrl: 'https://stor.unc.edu/undergraduate/courses/',
+    syllabusLabel: 'STOR course listing',
+  },
+  {
+    id: 'plcy-101',
+    code: 'PLCY 101',
+    title: 'Making Public Policy',
+    category: 'Double-major intro · Public Policy',
+    categoryKey: 'double',
+    credits: '3.0',
+    professors: ['Section instructors vary'],
+    format: 'Lecture / discussion',
+    examFormat: 'Exams, memos, and projects (section-specific)',
+    attendance: 'Discussion participation often matters',
+    aiPolicy: 'yellow',
+    aiNote: 'Policy memos must be your analysis; cite evidence.',
+    difficulty: 2.8,
+    tip: 'Public Policy is a frequent companion field for Econ/Business students interested in consulting, government, or social impact.',
+    description:
+      'Introduction to how public problems are defined and how policy is designed and debated. Strong exploratory course for Business students considering Public Policy as a second major.',
+    gradingBreakdown: [
+      { item: 'Exams / quizzes', weight: 'Section-specific' },
+      { item: 'Memos / projects / participation', weight: 'Section-specific' },
+    ],
+    gradeFloor: 'Check Public Policy major gateway if you continue.',
+    detailedAdvice: [
+      'Practice writing concise policy memos—transferable to consulting case communication.',
+      'Pairs thematically with ECON 101 (incentives + institutions).',
+      'Ask advisors how PLCY courses interact with IDEAs Focus Capacities.',
+    ],
+    genEd: 'Varies by section',
+    sourceNote: 'UNC Catalog (PLCY); common Arts & Sciences pairing patterns',
+    tags: ['double'],
+    catalogUrl: 'https://catalog.unc.edu/courses/plcy/',
+    syllabusUrl: 'https://publicpolicy.unc.edu/',
+    syllabusLabel: 'UNC Public Policy',
   },
 ]
 
@@ -686,6 +963,158 @@ export const mentors: Mentor[] = [
     karma: 198,
     replyMinutes: 8,
   },
+  {
+    id: 'm21',
+    name: 'Zoe Harper',
+    year: "Sophomore '29",
+    track: 'Consulting',
+    identityTag: 'FBA',
+    avatarColor: '#0891b2',
+    initials: 'ZH',
+    courseIds: ['idst-101', 'idst-111l', 'engl-105'],
+    courseHistory: {
+      'idst-101': { professor: 'CAS section', term: 'Fall 2025', grade: 'A' },
+      'idst-111l': { professor: 'Lab section', term: 'Fall 2025', grade: 'A' },
+      'engl-105': { professor: 'Writing Program', term: 'Spring 2026', grade: 'A-' },
+    },
+    specialties: ['First-Year Foundations timing', 'ENGL 105 workshops', 'Semester balance'],
+    strengths: ['first-weeks', 'quick-tips', 'keep-assured'],
+    karma: 112,
+    replyMinutes: 5,
+  },
+  {
+    id: 'm22',
+    name: 'Kenji Sato',
+    year: "Junior '28",
+    track: 'Computer Science',
+    identityTag: 'UBP',
+    avatarColor: '#4338ca',
+    initials: 'KS',
+    courseIds: ['comp-110', 'stor-120', 'math-231'],
+    courseHistory: {
+      'comp-110': { professor: 'Alyssa Byrnes', term: 'Fall 2024', grade: 'A' },
+      'stor-120': { professor: 'STOR section', term: 'Spring 2025', grade: 'A-' },
+      'math-231': { professor: 'Linda Green', term: 'Fall 2024', grade: 'B+' },
+    },
+    specialties: ['Business + CS double', 'COMP 110 projects', 'Debugging habits'],
+    strengths: ['deep-dive', 'study-system', 'exams'],
+    karma: 186,
+    replyMinutes: 7,
+  },
+  {
+    id: 'm23',
+    name: 'Riley Quinn',
+    year: "Junior '28",
+    track: 'Psychology',
+    identityTag: 'UBP',
+    avatarColor: '#c026d3',
+    initials: 'RQ',
+    courseIds: ['psyc-101', 'engl-105', 'busi-100'],
+    courseHistory: {
+      'psyc-101': { professor: 'PSYC section', term: 'Fall 2024', grade: 'A' },
+      'engl-105': { professor: 'Writing Program', term: 'Fall 2024', grade: 'A-' },
+      'busi-100': { professor: 'Section', term: 'Spring 2025', grade: 'A' },
+    },
+    specialties: ['PSYC 101 exams', 'Business + Psych path', 'Writing Center'],
+    strengths: ['exams', 'quick-tips', 'first-weeks'],
+    karma: 129,
+    replyMinutes: 6,
+  },
+  {
+    id: 'm24',
+    name: 'Taylor Brooks',
+    year: "Senior '27",
+    track: 'Economics',
+    identityTag: 'UBP',
+    avatarColor: '#0f766e',
+    initials: 'TB',
+    courseIds: ['poli-100', 'plcy-101', 'econ-101'],
+    courseHistory: {
+      'poli-100': { professor: 'POLI section', term: 'Fall 2023', grade: 'A-' },
+      'plcy-101': { professor: 'PLCY section', term: 'Spring 2024', grade: 'A' },
+      'econ-101': { professor: 'Rita Balaban', term: 'Fall 2023', grade: 'A' },
+    },
+    specialties: ['Poli Sci second major', 'Public Policy intros', 'Econ + policy'],
+    strengths: ['explore-track', 'deep-dive', 'recruiting'],
+    karma: 204,
+    replyMinutes: 9,
+  },
+  {
+    id: 'm25',
+    name: 'Ava Chen',
+    year: "Sophomore '29",
+    track: 'Statistics',
+    identityTag: 'FBA',
+    avatarColor: '#1d4ed8',
+    initials: 'AC',
+    courseIds: ['stor-120', 'idst-111l', 'idst-101'],
+    courseHistory: {
+      'stor-120': { professor: 'STOR section', term: 'Fall 2025', grade: 'A' },
+      'idst-111l': { professor: 'Lab section', term: 'Fall 2025', grade: 'A' },
+      'idst-101': { professor: 'CAS section', term: 'Spring 2026', grade: 'A' },
+    },
+    specialties: ['STOR 120 vs STOR 155', 'Data literacy lab', 'Quant double major'],
+    strengths: ['ap-decision', 'labs', 'study-system'],
+    karma: 147,
+    replyMinutes: 5,
+  },
+  {
+    id: 'm26',
+    name: 'Miles Jordan',
+    year: "Junior '28",
+    track: 'Public Policy',
+    identityTag: 'UBP',
+    avatarColor: '#b45309',
+    initials: 'MJ',
+    courseIds: ['plcy-101', 'poli-100', 'engl-105'],
+    courseHistory: {
+      'plcy-101': { professor: 'PLCY section', term: 'Fall 2024', grade: 'A' },
+      'poli-100': { professor: 'POLI section', term: 'Spring 2025', grade: 'A-' },
+      'engl-105': { professor: 'Writing Program', term: 'Fall 2024', grade: 'B+' },
+    },
+    specialties: ['Policy memos', 'Business + PLCY', 'Consulting writing'],
+    strengths: ['deep-dive', 'explore-track', 'first-weeks'],
+    karma: 161,
+    replyMinutes: 8,
+  },
+  {
+    id: 'm27',
+    name: 'Nina Volkov',
+    year: "Senior '27",
+    track: 'Computer Science',
+    identityTag: 'UBP',
+    avatarColor: '#7c3aed',
+    initials: 'NV',
+    courseIds: ['comp-110', 'stor-120', 'psyc-101'],
+    courseHistory: {
+      'comp-110': { professor: 'Alyssa Byrnes', term: 'Fall 2023', grade: 'A-' },
+      'stor-120': { professor: 'STOR section', term: 'Spring 2024', grade: 'A' },
+      'psyc-101': { professor: 'PSYC section', term: 'Fall 2023', grade: 'B+' },
+    },
+    specialties: ['CS Honor Code / AI', 'Project deadlines', 'Double-major pacing'],
+    strengths: ['exams', 'time-management', 'deep-dive'],
+    karma: 219,
+    replyMinutes: 10,
+  },
+  {
+    id: 'm28',
+    name: 'Grace Lin',
+    year: "Sophomore '29",
+    track: 'Finance',
+    identityTag: 'FBA',
+    avatarColor: '#be123c',
+    initials: 'GL',
+    courseIds: ['engl-105', 'idst-101', 'stor-120'],
+    courseHistory: {
+      'engl-105': { professor: 'Writing Program', term: 'Fall 2025', grade: 'A' },
+      'idst-101': { professor: 'CAS section', term: 'Fall 2025', grade: 'A' },
+      'stor-120': { professor: 'STOR section', term: 'Spring 2026', grade: 'A-' },
+    },
+    specialties: ['Year-1 Foundations checklist', 'Peer review tips', 'FBA schedule'],
+    strengths: ['keep-assured', 'quick-tips', 'first-weeks'],
+    karma: 108,
+    replyMinutes: 4,
+  },
 ]
 
 type ReplyTopic =
@@ -932,6 +1361,202 @@ const REPLY_BANK: Record<string, Partial<Record<ReplyTopic, string[]>>> = {
       'BUSI 102 is “learn to read the company’s scoreboard.” If debits/credits click, everything else gets easier.',
     ],
   },
+  'idst-101': {
+    first_weeks: [
+      'Treat College Thriving as onboarding: show up, engage, and finish reflections on time. It’s 1 credit but still required in year 1.',
+    ],
+    exams: [
+      'Usually no giant final—expect participation, reflections, and short assignments. Check your section Canvas.',
+    ],
+    ap: [
+      'No AP skip. Honors students should ask about HNRS 101 as an alternate path for this Foundation.',
+    ],
+    workload: [
+      'Light weekly load if you stay current. Don’t stack all four First-Year Foundations into one overloaded semester alone—spread them.',
+    ],
+    attendance: [
+      'Discussion / engagement matters. Missing early sessions makes later reflections harder.',
+    ],
+    resources: [
+      'Advising’s first-semester planning page + your College Advisor are the ground truth for Foundation timing.',
+    ],
+    assured: [
+      'Separate from Assured Enrollment C-or-better rules, but still required for graduation timing—finish Foundations in year 1.',
+    ],
+    format: [
+      'Small / discussion-oriented. Pair with another Foundation (often ENGL 105 or IDST 111L) the same term.',
+    ],
+    general: [
+      'IDST 101 is about thriving at Carolina, not memorizing content. Take it seriously as transition support.',
+    ],
+  },
+  'idst-111l': {
+    first_weeks: [
+      'Find your lab room early and bring a laptop if required. Data Literacy Lab is short but paced weekly.',
+    ],
+    exams: [
+      'Expect lab exercises / short assessments more than a high-stakes comprehensive final—confirm with your syllabus.',
+    ],
+    workload: [
+      '1 credit, but labs punish falling behind. Finish each module the week it’s assigned.',
+    ],
+    resources: [
+      'This does NOT replace STOR 155 / STOR 120 / DATA 110 for the business stats prereq—plan both if needed.',
+    ],
+    assured: [
+      'Required First-Year Foundation (FY-DATA). Finish within your first two semesters.',
+    ],
+    format: [
+      'Lab format. Common pairing: ENGL 105 + IDST 111L in one semester.',
+    ],
+    general: [
+      'Useful warm-up before heavier quant. Treat it as literacy practice, not a substitute for STOR.',
+    ],
+  },
+  'engl-105': {
+    first_weeks: [
+      'Week 1–2: learn draft deadlines and peer-review norms. Writing courses reward early drafts, not Sunday-night heroes.',
+    ],
+    exams: [
+      'Assessment is usually portfolios / major papers, not a classic sit-down final. Rubrics matter—read them.',
+    ],
+    ai: [
+      'Writing must be yours. Follow the Writing Program / syllabus AI policy strictly—Honor Code territory.',
+    ],
+    workload: [
+      'Front-loaded around major writing projects. Block revision time after peer review, not just first-draft time.',
+    ],
+    attendance: [
+      'Workshop / peer-review days are usually critical. Missing them hurts both grade and draft quality.',
+    ],
+    resources: [
+      'Writing Center appointments fill up before deadlines—book early.',
+    ],
+    assured: [
+      'Required Year-1 Foundation (FY-WRITING). Plan it even if your Assured Enrollment focus is quant courses.',
+    ],
+    general: [
+      'ENGL 105 builds communication muscle you’ll reuse in BUSI 401 and recruiting writing.',
+    ],
+  },
+  'comp-110': {
+    first_weeks: [
+      'Start the first programming assignment the day it drops. Debugging time explodes near deadlines.',
+    ],
+    exams: [
+      'Projects + exams are common. Practice writing code without autocomplete crutches before timed assessments.',
+    ],
+    ap: [
+      'Check catalog prereqs (math/stats/PHIL gates). You generally cannot take COMP 110 after earning COMP 210 credit.',
+    ],
+    workload: [
+      'Expect heavier weeks around projects. Pair with lighter Gen Eds if this is your first coding course.',
+    ],
+    ai: [
+      'Many CS sections forbid AI-generated code on graded work. Read the syllabus Honor Code / AI clause carefully.',
+    ],
+    resources: [
+      'Office hours + peer study > last-minute Stack Overflow spirals. CS help resources are listed on the department site.',
+    ],
+    assured: [
+      'Not an Assured Enrollment required course, but a strong Business + CS double-major on-ramp. Still protect C-or-better on actual AE courses.',
+    ],
+    format: [
+      'Large lecture + programming assignments. FC-QUANT for many sections.',
+    ],
+    general: [
+      'No prior coding expected. Business students eyeing product/fintech often start here for a CS double.',
+    ],
+  },
+  'psyc-101': {
+    first_weeks: [
+      'Read before lecture—early quizzes often test application, not just vocabulary lists.',
+    ],
+    exams: [
+      'Multiple midterms / quizzes are common in large sections. Practice retrieval, not re-reading alone.',
+    ],
+    workload: [
+      'Steady weekly reading beats cramming three chapters the night before.',
+    ],
+    resources: [
+      'Confirm how your section maps to IDEAs Focus Capacities in your degree audit.',
+    ],
+    assured: [
+      'Optional for Assured Enrollment, useful if you’re exploring Psychology as a second major or people-analytics interest.',
+    ],
+    general: [
+      'Popular companion field for consulting/marketing-minded Business students.',
+    ],
+  },
+  'poli-100': {
+    first_weeks: [
+      'Skim the syllabus for Foundations of American Democracy overlays and writing expectations.',
+    ],
+    exams: [
+      'Mix of exams and short writing is common. Thesis clarity beats long vague paragraphs.',
+    ],
+    workload: [
+      'Reading load can spike before exams—outline chapters as you go.',
+    ],
+    resources: [
+      'Office hours help a lot on essay prompts. Econ + Poli Sci is a frequent Carolina pairing.',
+    ],
+    assured: [
+      'Not an AE requirement—use it to explore Political Science / policy double-major interest.',
+    ],
+    general: [
+      'Good institutional complement to ECON 101 if you like markets + government.',
+    ],
+  },
+  'stor-120': {
+    first_weeks: [
+      'Compare STOR 120 vs STOR 155 vs DATA 110 for style and schedule before you commit.',
+    ],
+    exams: [
+      'Homework/labs often compound—miss a week and exam prep gets painful.',
+    ],
+    ap: [
+      'If you have AP Stats credit, talk to advising before auto-skipping; confirm UBP / Assured Enrollment rules for your catalog year.',
+    ],
+    workload: [
+      'Computational labs take real time. Budget like a quant course, not a fluff elective.',
+    ],
+    resources: [
+      'STOR department course pages + peer tutors. Also counts among business stats prereq options.',
+    ],
+    assured: [
+      'C or better matters if you’re using it for Assured Enrollment / UBP statistics requirement.',
+    ],
+    format: [
+      'Lecture + computational work. Natural on-ramp toward Statistics & Analytics as a second major.',
+    ],
+    general: [
+      'Strong pick if you want Business + Stats / data science without jumping straight to STOR 155’s style.',
+    ],
+  },
+  'plcy-101': {
+    first_weeks: [
+      'Learn the memo format early—Public Policy grades often reward concise evidence-based writing.',
+    ],
+    exams: [
+      'Expect exams plus memos/projects. Practice writing tight recommendations, not just summarizing readings.',
+    ],
+    workload: [
+      'Reading + writing combo. Block drafting time the way you’d block problem sets.',
+    ],
+    resources: [
+      'UNC Public Policy site + advisors for major gateway rules if you continue.',
+    ],
+    assured: [
+      'Optional explore course for AE students considering Public Policy as a double major.',
+    ],
+    ai: [
+      'Policy memos must be your analysis—cite evidence; follow syllabus AI rules.',
+    ],
+    general: [
+      'Pairs thematically with ECON 101. Useful for consulting, government, and social-impact paths.',
+    ],
+  },
 }
 
 const GRADE_POINTS: Record<string, number> = {
@@ -966,12 +1591,42 @@ function scoreMentor(
     reasons.push('Active UBP peer mentor')
   }
 
-  const interestHit = profile.interests.find((i) =>
-    mentor.track.toLowerCase().includes(i.toLowerCase()),
-  )
+  const interestHit = profile.interests.find((i) => {
+    const interest = i.toLowerCase()
+    const track = mentor.track.toLowerCase()
+    return (
+      track.includes(interest) ||
+      interest.includes(track) ||
+      mentor.specialties.some((s) => s.toLowerCase().includes(interest))
+    )
+  })
   if (interestHit) {
     score += 12
     reasons.push(`Shared focus: ${mentor.track}`)
+  }
+
+  const course = courses.find((c) => c.id === courseId)
+  if (course?.categoryKey === 'fyf' && profile.year === 'first-year') {
+    score += 5
+    reasons.push('First-year Foundations timing')
+  }
+  if (
+    course?.categoryKey === 'double' &&
+    (profile.goals.includes('explore-track') ||
+      profile.interests.some((i) =>
+        [
+          'computer science',
+          'economics',
+          'public policy',
+          'psychology',
+          'statistics',
+        ].includes(i.toLowerCase()),
+      ))
+  ) {
+    score += 5
+    if (!reasons.some((r) => r.includes('Shared focus'))) {
+      reasons.push('Double-major exploration fit')
+    }
   }
 
   if (history) {
