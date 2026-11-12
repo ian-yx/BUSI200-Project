@@ -1,4 +1,4 @@
-import { BookOpen, Info, MessageCircle, ShieldCheck } from 'lucide-react'
+import { BadgeCheck, BookOpen, Info, MessageCircle, UserRound } from 'lucide-react'
 
 export type NavTab = 'courses' | 'matches'
 
@@ -7,6 +7,8 @@ interface NavbarProps {
   onTabChange: (tab: NavTab) => void
   unreadCount: number
   onOpenShowcase: () => void
+  onOpenProfile: () => void
+  profileName: string
 }
 
 export function Navbar({
@@ -14,70 +16,73 @@ export function Navbar({
   onTabChange,
   unreadCount,
   onOpenShowcase,
+  onOpenProfile,
+  profileName,
 }: NavbarProps) {
   return (
-    <header className="sticky top-0 z-40 border-b border-border bg-white/95 backdrop-blur-md">
-      <div className="mx-auto flex max-w-6xl flex-col gap-3 px-4 py-3 sm:px-6">
-        <div className="flex items-start justify-between gap-3">
-          <div className="min-w-0">
-            <div className="flex items-center gap-2">
-              <div className="flex h-9 w-9 shrink-0 items-center justify-center rounded-lg bg-navy text-sm font-bold text-white">
-                TH
-              </div>
-              <div className="min-w-0">
-                <h1 className="truncate text-base font-bold tracking-tight text-navy sm:text-lg">
-                  TarHeel CourseMatch
-                </h1>
-                <p className="truncate text-xs text-slate-500 sm:text-sm">
-                  UNC 商学院大一选课互助与大纲指数库
-                </p>
-              </div>
-            </div>
-          </div>
-
-          <div className="flex shrink-0 items-center gap-2">
-            <button
-              type="button"
-              onClick={onOpenShowcase}
-              className="hidden items-center gap-1.5 rounded-lg border border-border bg-white px-3 py-2 text-xs font-medium text-navy transition hover:border-carolina hover:text-carolina sm:inline-flex"
-            >
-              <Info className="h-3.5 w-3.5" />
-              项目设计理念（Demo 说明）
-            </button>
-            <div className="flex items-center gap-1.5 rounded-full border border-emerald-200 bg-emerald-50 px-2.5 py-1.5 text-[11px] font-medium text-emerald-800 sm:text-xs">
-              <ShieldCheck className="h-3.5 w-3.5 shrink-0" />
-              <span className="hidden max-w-[220px] truncate sm:inline">
-                Onyen 已认证：大一新生 (KFBS Assured Enrollment)
-              </span>
-              <span className="sm:hidden">Onyen 已认证</span>
-            </div>
+    <header className="sticky top-0 z-40 border-b border-border bg-navy text-white">
+      <div className="mx-auto flex max-w-6xl items-center justify-between gap-3 px-4 py-2.5 sm:px-6">
+        <div className="flex min-w-0 items-center gap-3">
+          <img
+            src="./unc-logo.svg"
+            alt="University of North Carolina at Chapel Hill"
+            className="h-9 w-auto shrink-0 sm:h-10"
+          />
+          <div className="min-w-0 border-l border-white/20 pl-3">
+            <p className="truncate text-sm font-semibold tracking-tight sm:text-base">
+              TarHeel CourseMatch
+            </p>
+            <p className="hidden truncate text-[11px] text-white/65 sm:block">
+              Kenan-Flagler · First-year course intel
+            </p>
           </div>
         </div>
 
-        <nav className="flex gap-1 overflow-x-auto pb-0.5">
-          <TabButton
-            active={activeTab === 'courses'}
-            onClick={() => onTabChange('courses')}
-            icon={<BookOpen className="h-4 w-4" />}
-            label="商科课程指数库"
-          />
-          <TabButton
-            active={activeTab === 'matches'}
-            onClick={() => onTabChange('matches')}
-            icon={<MessageCircle className="h-4 w-4" />}
-            label="我的匹配卡与私信"
-            badge={unreadCount}
-          />
+        <div className="flex items-center gap-1">
           <button
             type="button"
             onClick={onOpenShowcase}
-            className="inline-flex items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium text-slate-600 transition hover:bg-slate-100 sm:hidden"
+            className="rounded-md p-2 text-white/80 hover:bg-white/10 hover:text-white"
+            title="About"
+            aria-label="About"
           >
             <Info className="h-4 w-4" />
-            Demo 说明
           </button>
-        </nav>
+          <button
+            type="button"
+            onClick={onOpenProfile}
+            className="inline-flex items-center gap-1.5 rounded-md bg-white/10 px-2.5 py-1.5 text-xs font-medium text-white hover:bg-white/15"
+            title="Profile & matching preferences"
+          >
+            <UserRound className="h-3.5 w-3.5" />
+            <span className="hidden max-w-[120px] truncate sm:inline">
+              {profileName || 'Profile'}
+            </span>
+          </button>
+          <span
+            className="ml-1 inline-flex items-center rounded-md bg-white/10 p-1.5"
+            title="Assured Enrollment verified (demo)"
+          >
+            <BadgeCheck className="h-4 w-4 text-carolina" />
+          </span>
+        </div>
       </div>
+
+      <nav className="mx-auto flex max-w-6xl border-t border-white/10 px-2 sm:px-4">
+        <TabButton
+          active={activeTab === 'courses'}
+          onClick={() => onTabChange('courses')}
+          icon={<BookOpen className="h-3.5 w-3.5" />}
+          label="Courses"
+        />
+        <TabButton
+          active={activeTab === 'matches'}
+          onClick={() => onTabChange('matches')}
+          icon={<MessageCircle className="h-3.5 w-3.5" />}
+          label="Matches"
+          badge={unreadCount}
+        />
+      </nav>
     </header>
   )
 }
@@ -99,16 +104,16 @@ function TabButton({
     <button
       type="button"
       onClick={onClick}
-      className={`relative inline-flex shrink-0 items-center gap-1.5 rounded-lg px-3 py-2 text-sm font-medium transition ${
+      className={`relative inline-flex items-center gap-1.5 border-b-2 px-4 py-2.5 text-sm font-medium transition ${
         active
-          ? 'bg-navy text-white shadow-sm'
-          : 'text-slate-600 hover:bg-slate-100'
+          ? 'border-carolina text-white'
+          : 'border-transparent text-white/65 hover:text-white'
       }`}
     >
       {icon}
       {label}
       {badge != null && badge > 0 && (
-        <span className="absolute -right-1 -top-1 flex h-5 min-w-5 items-center justify-center rounded-full bg-rose-500 px-1 text-[10px] font-bold text-white">
+        <span className="ml-0.5 rounded-full bg-rose-500 px-1.5 text-[10px] font-bold leading-4 text-white">
           {badge > 9 ? '9+' : badge}
         </span>
       )}
