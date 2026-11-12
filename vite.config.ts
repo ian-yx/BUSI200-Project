@@ -5,6 +5,7 @@ import tailwindcss from '@tailwindcss/vite'
 // https://vite.dev/config/
 export default defineConfig({
   plugins: [react(), tailwindcss()],
-  // 相对路径，便于直接部署到 GitHub Pages 任意仓库路径
+  // Relative assets work for GitHub project Pages and local `vite preview`
   base: './',
 })
+
