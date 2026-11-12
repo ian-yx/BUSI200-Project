@@ -2,40 +2,38 @@
 
 Kenan-Flagler first-year course intel + peer matching prototype for **BUSI 200 Carolina Changemaking Challenge**.
 
-Stack: React · TypeScript · Vite · Tailwind CSS · lucide-react · localStorage
+Live (after Pages is configured): https://ian-yx.github.io/BUSI200-Project/
 
-## Why the page looks blank if you open `index.html`
+## Important: do not open root `index.html`
 
-The root `index.html` is only a Vite **source shell** (`<div id="root">` + `/src/main.tsx`). It is not a finished website.
+Root `index.html` is only a Vite **dev shell**. It looks blank on purpose.
 
-| How you open it | Result |
+| Open method | Result |
 | --- | --- |
-| Double-click `index.html` / open as a file | Blank — browser cannot run TypeScript / Vite modules |
-| GitHub Pages from repo root | Blank — `dist/` is gitignored, so Pages serves the source shell |
-| `npm run dev` | Works — Vite compiles React live |
-| GitHub Pages from built `dist/` (Actions below) | Works |
+| Double-click root `index.html` | Blank |
+| GitHub Pages publishing the **repo root** | Blank (serves the shell + `/src/main.tsx`) |
+| `npm run dev` | Works |
+| Built files in `docs/` or Actions `dist/` | Works |
 
-## Local development
+## Local
 
 ```bash
 npm install
 npm run dev
 ```
 
-Open the URL Vite prints (usually `http://127.0.0.1:5173/`). Do **not** open `index.html` directly.
+## Fix GitHub Pages (recommended: /docs)
 
-```bash
-npm run build
-npm run preview
-```
+Built site is committed in `docs/` (with `.nojekyll`).
 
-## GitHub Pages
+1. Open repo **Settings → Pages**
+2. Under **Build and deployment → Source**, choose **Deploy from a branch** (not GitHub Actions)
+3. Branch: **main**
+4. Folder: **/docs**
+5. Save, wait 1–2 minutes
+6. Open https://ian-yx.github.io/BUSI200-Project/
 
-1. Push to `main` (this repo includes `.github/workflows/deploy.yml`).
-2. Repo **Settings → Pages → Build and deployment → Source: GitHub Actions**.
-3. After the workflow succeeds, site URL:
-   `https://ian-yx.github.io/BUSI200-Project/`
+### Alternative: GitHub Actions
 
-## Data notes
-
-Course facts are drawn from the UNC Catalog, Kenan-Flagler Assured Enrollment / FBA pages, and public syllabi. Peer tips and match profiles are illustrative.
+If you prefer Actions, keep Source = **GitHub Actions** and use the workflow in `.github/workflows/deploy.yml`.  
+Do **not** also leave a branch deploy of `/` (root)—that Jekyll deploy overwrites the real build with the blank source page.
